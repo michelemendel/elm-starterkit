@@ -1,0 +1,13 @@
+# Misc
+.idea/
+.DS_Store
+*.iml*
+*.log
+.gitignore~
+
+#node_modules/
+#bundle.js
+
+# MM: Some private files
+#ws-server.js
+#ws-client.html
