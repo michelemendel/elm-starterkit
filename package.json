@@ -1,0 +1,17 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "Trying out Elm",
+  "main": "index.js",
+  "author": "Michele Mendel",
+  "license": "ISC",
+  "scripts": {
+    "build": "elm-make src/Main.elm --output target/index.html",
+    "start": "chokidar '**/*.elm' -c 'elm make src/Main.elm --output target/index.html' --initial",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "unlock": "sudo chown michelemendel:staff package.json"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0"
+  }
+}
