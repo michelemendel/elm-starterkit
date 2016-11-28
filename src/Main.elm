@@ -1,15 +1,19 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, text)
+import Html exposing (Html, div, text, input)
 import Html.App
+import Html.Attributes exposing (style, class, placeholder, type', value)
+import Html.Events exposing (onInput)
+import Debug exposing (log)
+import Platform.Cmd
+import String
 
 
 main =
-    Html.App.program
-        { init = init
+    Html.App.beginnerProgram
+        { model = model
         , view = view
         , update = update
-        , subscriptions = subscriptions
         }
 
 
@@ -18,23 +22,45 @@ main =
 
 
 type alias Model =
-    String
+    { name : String
+    , password : String
+    , passwordAgain : String
+    }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( "Hello World", Cmd.none )
+model : Model
+model =
+    { name = "John Q"
+    , password = ""
+    , passwordAgain = ""
+    }
 
 
 
 -- UPDATE
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+type Msg
+    = Name String
+    | Password String
+    | PasswordAgain String
+
+
+update : Msg -> Model -> Model
 update msg model =
-    case msg of
-        NoOp ->
-            ( model, Cmd.none )
+    let
+        a =
+            log (toString model.name) 0
+    in
+        case msg of
+            Name name ->
+                { model | name = name }
+
+            Password password ->
+                { model | password = password }
+
+            PasswordAgain password ->
+                { model | password = password }
 
 
 
@@ -43,22 +69,13 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ text model ]
+    div
+        []
+        [ (text "Name: ")
+        , input [ type' "text", placeholder "Name", onInput Name, value model.name ] []
+        , div [ class "rev-string" ] [ text (String.reverse model.name) ]
+        ]
 
 
-
--- MESSAGES
-
-
-type Msg
-    = NoOp
-
-
-
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
+revStyle ( color, bgColor ) =
+    style [ ( "color", color ), ( "backgroundColor", bgColor ) ]

@@ -1,0 +1,11 @@
+@import 'colors';
+@import 'form';
+
+body {
+  margin: 0;
+  background-color: $page-bg-color;
+}
+
+.something {
+    display: flex;
+}

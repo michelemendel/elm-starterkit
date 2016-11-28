@@ -4,13 +4,12 @@
 *.iml*
 *.log
 .gitignore~
+Building
+
+public/*.js
+public/*.css
+public/*.map
 
 node_modules/
-#bundle.js
-
-# MM: Some private files
-#ws-server.js
-#ws-client.html
-
-target
-elm-stuff
+target/
+elm-stuff/

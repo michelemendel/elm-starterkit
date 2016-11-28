@@ -6,12 +6,34 @@
   "author": "Michele Mendel",
   "license": "ISC",
   "scripts": {
-    "build": "elm-make src/Main.elm --output target/index.html",
-    "start": "chokidar '**/*.elm' -c 'elm make src/Main.elm --output target/index.html' --initial",
+    "---- BUILD HTML": "----------------------------------------------",
+    "build-html": "elm-make src/Main.elm --output public/elm-index.html",
+    "---- BUILD JAVASCRIPT and watch": "----------------------------------------------",
+    "build-js": "elm-make src/Main.elm --output public/index.js",
+    "watch-js": "chokidar 'src/*.elm' -c 'npm run build-js' --initial",
+    "---- CSS and watch": "----------------------------------------------",
+    "build-css": "node-sass scss/main.scss --source-map true -o public/",
+    "prefix-css": "postcss --use autoprefixer -d public public/main.css",
+    "minify-css": "cssmin < public/main.css >public/main.min.css",
+    "postbuild-css": "npm run prefix-css && npm run minify-css",
+    "watch-css": "chokidar 'scss/*.scss' -c 'npm run build-css' --initial",
+    "---- BUILD ALL": "----------------------------------------------",
+    "build": "npm run build-js & npm run build-css",
+    "---- WATCH ALL": "----------------------------------------------",
+    "start": "npm run watch-js & npm run watch-css",
+    "---- LIVE RELOAD": "----------------------------------------------",
+    "livereload": "live-reload --port 9000 public/ --delay 100 # ms",
+    "---- TEST": "----------------------------------------------",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "unlock": "sudo chown michelemendel:staff package.json"
+    "---- MISC": "----------------------------------------------",
+    "clean": "rm public/*.css public/*.css.map public/*.js",
+    "unlock": "sudo chown michelemendel:staff package.json",
+    "env": "env"
   },
   "devDependencies": {
-    "chokidar-cli": "^1.2.0"
+    "chokidar-cli": "^1.2.0",
+    "cssmin": "^0.4.3",
+    "live-reload": "^1.1.0",
+    "node-sass": "^3.10.1"
   }
 }
