@@ -1,8 +1,7 @@
 module Main exposing (..)
 
 import Html exposing (Html, div, text, input)
-import Html.App
-import Html.Attributes exposing (style, class, placeholder, type', value)
+import Html.Attributes exposing (style, class, placeholder, value)
 import Html.Events exposing (onInput)
 import Debug exposing (log)
 import Platform.Cmd
@@ -10,7 +9,7 @@ import String
 
 
 main =
-    Html.App.beginnerProgram
+    Html.beginnerProgram
         { model = model
         , view = view
         , update = update
@@ -72,7 +71,7 @@ view model =
     div
         []
         [ (text "Name: ")
-        , input [ type' "text", placeholder "Name", onInput Name, value model.name ] []
+        , input [ placeholder "Name", onInput Name, value model.name ] []
         , div [ class "rev-string" ] [ text (String.reverse model.name) ]
         ]
 

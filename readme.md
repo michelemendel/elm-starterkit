@@ -34,9 +34,20 @@ https://github.com/avh4/elm-format
 
 ### IntelliJ
 
+#### Code format
+A. Using Tools/External Tools
+1. elm-format (see above)
+1. Setup external tools and keymap, see https://github.com/durkiewicz/elm-plugin/issues/9
+
+OR
+
+B. Using File Watchers
 1. Elm language plugin
 1. File Watchers plugin
+
+#### Live reload
 1. Live reload with Chrome: Install plugin Live Edit on Intellij and Jetbrains extension on Chrome
+See below for more information.
 
 ### Maybe fix permissions on the Mac
 
