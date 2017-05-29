@@ -1,7 +1,7 @@
 {
-  "name": "hello",
+  "name": "ElmStarterKit",
   "version": "1.0.0",
-  "description": "Trying out Elm",
+  "description": "Elm",
   "main": "index.js",
   "author": "Michele Mendel",
   "license": "ISC",
