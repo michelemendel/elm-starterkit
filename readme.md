@@ -17,7 +17,7 @@
 * https://www.npmjs.com/package/chokidar-cli
 * sudo npm install chokidar-cli --save-dev
 
-#### Elm live (didn't work)
+#### Elm live
 
 * https://github.com/tomekwi/elm-live
 * https://www.npmjs.com/package/elm-live
