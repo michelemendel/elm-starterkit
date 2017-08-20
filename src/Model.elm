@@ -12,7 +12,7 @@ type alias Model =
 
 model : Model
 model =
-    { name = "John SSS"
+    { name = "John DDD"
     , password = ""
     , passwordAgain = ""
     }

@@ -6,10 +6,8 @@
 .gitignore~
 Building
 
-public/*.js
-public/*.css
-public/*.map
 
 node_modules/
+public/
 target/
 elm-stuff/

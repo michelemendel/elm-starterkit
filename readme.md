@@ -11,17 +11,23 @@
 
 ### Auto build
 
-#### Chokidar (worked)
-
-* https://maximilianhoffmann.com/posts/how-to-compile-elm-files-on-save
-* https://www.npmjs.com/package/chokidar-cli
-* sudo npm install chokidar-cli --save-dev
-
 #### Elm live
 
 * https://github.com/tomekwi/elm-live
 * https://www.npmjs.com/package/elm-live
 * sudo npm install --save-dev elm elm-live
+
+#### npm global install
+
+* elm-live
+* elm-test
+
+
+#### Chokidar (used to live update CSS)
+
+* https://maximilianhoffmann.com/posts/how-to-compile-elm-files-on-save
+* https://www.npmjs.com/package/chokidar-cli
+* sudo npm install chokidar-cli --save-dev
 
 
 ### Code format

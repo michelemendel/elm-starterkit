@@ -15,18 +15,23 @@
     "sass"
   ],
   "scripts": {
+    "---- COPY index.html": "----------------------------------------------",
+    "copy:index.html": "ncp src/index.html public/index.html",
+    "---- INIT public folder": "----------------------------------------------",
+    "clean:public": "rimraf public",
+    "init:public": "npm-run-all clean:public copy:index.html",
     "---- BUILD HTML": "----------------------------------------------",
     "build:html": "elm-make src/Main.elm --output public/elm-index.html",
     "---- BUILD, WATCH ELM": "----------------------------------------------",
-    "build:elm": "elm-make src/Main.elm --output public/index.js",
-    "watch:elm": "elm-live --port=8000 src/Main.elm --output=public/index.js --dir=public --open",
+    "build:elm": "npm run init:public && elm-make src/Main.elm --output public/index.js",
+    "watch:elm": "npm run init:public && elm-live --port=8000 src/Main.elm --output=public/index.js --dir=public --open",
     "---- BUILD, WATCH CSS": "----------------------------------------------",
-    "build:css": "node-sass scss/main.scss --source-map true -o public/",
+    "build:css": "node-sass style/main.scss --source-map true -o public/",
     "prefix:css": "postcss --use autoprefixer -d public public/main.css",
     "minify:css": "cssmin < public/main.css >public/main.min.css",
     "postbuild:css": "npm-run-all minify:css",
     "postbuild:css-old": "npm-run-all prefix:css minify:css",
-    "watch:css": "chokidar 'scss/*.scss' -c 'npm run build:css' --initial",
+    "watch:css": "chokidar 'style/*.scss' -c 'npm run build:css' --initial",
     "---- BUILD ALL": "----------------------------------------------",
     "build": "npm-run-all build:elm build:css",
     "---- WATCH ALL": "----------------------------------------------",
@@ -34,14 +39,16 @@
     "---- TEST": "----------------------------------------------",
     "test": "echo \"Error: no test specified\" && exit 1",
     "---- MISC": "----------------------------------------------",
-    "clean": "rm public/*.css public/*.css.map public/*.js",
     "unlock": "sudo chown michelemendel:staff package.json",
     "env": "env"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
+    "cross-env": "^5.0.5",
     "cssmin": "^0.4.3",
+    "ncp": "^2.0.0",
     "node-sass": "^4.5.3",
-    "npm-run-all": "^4.0.2"
+    "npm-run-all": "^4.0.2",
+    "rimraf": "^2.6.1"
   }
 }
