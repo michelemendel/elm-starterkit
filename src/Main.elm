@@ -6,6 +6,7 @@ import Html.Events exposing (onInput)
 import Debug exposing (log)
 import Platform.Cmd
 import String
+import Model exposing (Model, model)
 
 
 main =
@@ -14,25 +15,6 @@ main =
         , view = view
         , update = update
         }
-
-
-
--- MODEL
-
-
-type alias Model =
-    { name : String
-    , password : String
-    , passwordAgain : String
-    }
-
-
-model : Model
-model =
-    { name = "John Q"
-    , password = ""
-    , passwordAgain = ""
-    }
 
 
 
