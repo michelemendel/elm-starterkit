@@ -32,6 +32,18 @@ https://github.com/avh4/elm-format
 1. IntelliJ: Setup File Watchers plugin to run when saving files (Tools), https://github.com/avh4/elm-format/blob/master/img/JetBrains%20setup.png
 1. Manually run: elm-format --yes src 
 
+### Visual Studio Code
+
+#### Plugins for Elm
+* elm - Helps with type annotations
+* elm-format
+
+#### Recommended plugins (not necessarily related to Elm)
+* HTML Snippets
+* JavaScript (ES6) code snippets
+* Node Exec
+* Trailing Semicolon
+
 ### IntelliJ
 
 #### Code format
