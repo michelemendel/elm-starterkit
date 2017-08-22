@@ -18,7 +18,7 @@
     "---- COPY index.html": "----------------------------------------------",
     "copy:index.html": "ncp src/index.html public/index.html",
     "---- INIT public folder": "----------------------------------------------",
-    "clean:public": "rimraf public",
+    "clean:public": "rimraf public && mkdirp public",
     "init:public": "npm-run-all clean:public copy:index.html",
     "---- BUILD HTML": "----------------------------------------------",
     "build:html": "elm-make src/Main.elm --output public/elm-index.html",
@@ -50,5 +50,8 @@
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
     "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1"
   }
 }

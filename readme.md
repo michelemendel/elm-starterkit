@@ -1,8 +1,3 @@
-
-## To check out
-
-* elm-live
-
 ## Installation
 
 ### Elm
@@ -22,13 +17,11 @@
 * elm-live
 * elm-test
 
-
 #### Chokidar (used to live update CSS)
 
 * https://maximilianhoffmann.com/posts/how-to-compile-elm-files-on-save
 * https://www.npmjs.com/package/chokidar-cli
 * sudo npm install chokidar-cli --save-dev
-
 
 ### Code format
 
