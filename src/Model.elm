@@ -1,4 +1,4 @@
-module Model exposing (Model, model)
+module Model exposing (Model, initialModel)
 
 -- MODEL
 
@@ -10,8 +10,8 @@ type alias Model =
     }
 
 
-model : Model
-model =
+initialModel : Model
+initialModel =
     { name = "John DDD"
     , password = ""
     , passwordAgain = ""

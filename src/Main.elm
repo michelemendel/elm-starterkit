@@ -1,20 +1,32 @@
 module Main exposing (..)
 
+import Debug exposing (log)
 import Html exposing (Html, div, text, input)
 import Html.Attributes exposing (style, class, placeholder, value)
 import Html.Events exposing (onInput)
-import Debug exposing (log)
+import Model exposing (Model, initialModel)
 import Platform.Cmd
 import String
-import Model exposing (Model, model)
 
 
+main : Program String Model Msg
 main =
-    Html.beginnerProgram
-        { model = model
+    Html.programWithFlags
+        { init = init
         , view = view
         , update = update
+        , subscriptions = \_ -> Sub.none
         }
+
+
+init : String -> ( Model, Cmd Msg )
+init flags =
+    ( initialModel, initialCmd )
+
+
+initialCmd : Cmd Msg
+initialCmd =
+    Cmd.none
 
 
 
@@ -27,7 +39,11 @@ type Msg
     | PasswordAgain String
 
 
-update : Msg -> Model -> Model
+
+-- update : Msg -> Model -> Model
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     let
         a =
@@ -35,13 +51,13 @@ update msg model =
     in
         case msg of
             Name name ->
-                { model | name = name }
+                ( { model | name = name }, Cmd.none )
 
             Password password ->
-                { model | password = password }
+                ( { model | password = password }, Cmd.none )
 
             PasswordAgain password ->
-                { model | password = password }
+                ( { model | password = password }, Cmd.none )
 
 
 
@@ -58,5 +74,6 @@ view model =
         ]
 
 
+revStyle : ( String, String ) -> Html.Attribute msg
 revStyle ( color, bgColor ) =
     style [ ( "color", color ), ( "backgroundColor", bgColor ) ]

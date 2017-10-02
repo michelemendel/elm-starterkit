@@ -6,6 +6,12 @@
 
 ### Auto build
 
+__NOTE:__ When installing and building the application, the following folders are generated. They can be removed to fix various problems or if you only want to start from scratch.
+
+* node_modules (package.json)
+* elm-stuff
+* public
+
 #### Elm live
 
 * https://github.com/tomekwi/elm-live
@@ -35,7 +41,7 @@ https://github.com/avh4/elm-format
 
 #### Plugins for Elm
 * elm - Helps with type annotations
-* elm-format
+* elm-format - Requires Node v6 (2017.10.01)
 
 #### Recommended plugins (not necessarily related to Elm)
 * HTML Snippets
@@ -100,3 +106,7 @@ elm-reactor
 1. https://www.npmjs.com/package/livereload
 1. https://www.npmjs.com/package/live-reload
 
+## Troubles
+1. Elm: Delete elm-stuff/ or just elm-stuff/build-artifacts/.
+1. Node: Delete node_modules/
+ 
