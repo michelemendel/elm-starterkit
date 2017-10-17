@@ -107,6 +107,6 @@ elm-reactor
 1. https://www.npmjs.com/package/live-reload
 
 ## Troubles
-1. Elm: Delete elm-stuff/ or just elm-stuff/build-artifacts/.
+1. Elm: Delete elm-stuff/ or just elm-stuff/build-artifacts/ and maybe also public/.
 1. Node: Delete node_modules/
  

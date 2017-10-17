@@ -1,11 +1,17 @@
-@import 'colors';
-@import 'form';
+// @import "node_modules/bootstrap/dist/css/bootstrap-reboot.min";
+// @import "node_modules/bootstrap/dist/css/bootstrap.min";
+// @import "node_modules/bootstrap/dist/css/bootstrap-grid.min";
+// @import 'colors';
+// @import 'form';
 
-body {
-  margin: 40px;
-  background-color: $page-bg-color;
+#elm-app {
+    font: 16px 'Verdana', "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.something {
-    display: flex;
+.row {
+    border: 1px solid blue;
 }
+div[class^="col"] {
+    border: 1px solid salmon;
+}
+

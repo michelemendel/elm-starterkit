@@ -1,8 +1,8 @@
 module Main exposing (..)
 
 import Debug exposing (log)
-import Html exposing (Html, div, text, input)
-import Html.Attributes exposing (style, class, placeholder, value)
+import Html exposing (Html, div, text, input, p, h4, a, button)
+import Html.Attributes exposing (style, class, placeholder, value, href, attribute, type_)
 import Html.Events exposing (onInput)
 import Model exposing (Model, initialModel)
 import Platform.Cmd
@@ -66,11 +66,28 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div
-        []
-        [ (text "Name: ")
-        , input [ placeholder "Name", onInput Name, value model.name ] []
-        , div [ class "rev-string" ] [ text (String.reverse model.name) ]
+    div [ class "container" ]
+        [ div [ class "row" ]
+            [ div [ class "col-sm-4" ]
+                [ (text "Name: ")
+                ]
+            , div [ class "col-sm-8" ]
+                [ input [ placeholder "Name", onInput Name, value model.name ] []
+                ]
+            ]
+        , div [ class "row" ]
+            [ div [ class "cols-sm-12" ]
+                [ text (String.reverse model.name)
+                ]
+            ]
+        , div []
+            [ p []
+                [ a [ attribute "aria-controls" "collapseExample", attribute "aria-expanded" "false", class "btn btn-primary", attribute "data-toggle" "collapse", href "#collapseExample" ]
+                    [ text "Link with href  " ]
+                , button [ attribute "aria-controls" "collapseExample", attribute "aria-expanded" "false", class "btn btn-primary", attribute "data-target" "#collapseExample", attribute "data-toggle" "collapse", type_ "button" ]
+                    [ text "Button with data-target  " ]
+                ]
+            ]
         ]
 
 
