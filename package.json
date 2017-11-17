@@ -1,60 +1,60 @@
 {
-  "name": "elm-starter-kit",
-  "version": "1.0.0",
-  "description": "Elm",
-  "main": "main.js",
-  "author": "Michele Mendel",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/michelemendel/elm-starterkit"
-  },
-  "license": "ISC",
-  "keywords": [
-    "elm",
-    "web",
-    "sass"
-  ],
-  "scripts": {
-    "---- COPY index.html": "----------------------------------------------",
-    "index:copy": "ncp src/index.html public/index.html",
-    "---- INIT public folder": "----------------------------------------------",
-    "public:clean": "rimraf public && mkdirp public",
-    "public:init": "npm-run-all public:clean index:copy",
-    "---- BUILD HTML": "----------------------------------------------",
-    "html:build": "elm-make src/Main.elm --output public/elm-index.html",
-    "---- BUILD, WATCH ELM": "----------------------------------------------",
-    "elm:build": "npm run public:init && elm-make src/Main.elm --output public/main.js",
-    "elm:watch": "npm run public:init && elm-live --port=8000 src/Main.elm --output=public/main.js --dir=public --open",
-    "---- BUILD, WATCH CSS": "----------------------------------------------",
-    "build:css": "node-sass style/main.scss --source-map true -o public/",
-    "prefix:css": "postcss --use autoprefixer -d public public/main.css",
-    "minify:css": "cssmin < public/main.css >public/main.min.css",
-    "postbuild:css": "npm-run-all prefix:css minify:css",
-    "watch:css": "chokidar 'style/*.scss' -c 'npm run build:css' --initial",
-    "---- BUILD ALL": "----------------------------------------------",
-    "build": "npm-run-all build:css",
-    "---- WATCH ALL": "----------------------------------------------",
-    "start": "npm-run-all --parallel elm:watch watch:css",
-    "---- TEST": "----------------------------------------------",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "---- MISC": "----------------------------------------------",
-    "unlock": "sudo chown michelemendel:staff package.json",
-    "env": "env"
-  },
-  "devDependencies": {
-    "autoprefixer": "^7.1.5",
-    "bootstrap": "^4.0.0-beta",
-    "chokidar-cli": "^1.2.0",
-    "cross-env": "^5.0.5",
-    "cssmin": "^0.4.3",
-    "ncp": "^2.0.0",
-    "node-sass": "^4.5.3",
-    "npm-run-all": "^4.0.2",
-    "postcss": "^6.0.13",
-    "postcss-cli": "^4.1.1",
-    "rimraf": "^2.6.1"
-  },
-  "dependencies": {
-    "mkdirp": "^0.5.1"
-  }
+    "name": "elm-starter-kit",
+    "version": "1.0.0",
+    "description": "Elm",
+    "main": "main.js",
+    "author": "Michele Mendel",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/michelemendel/elm-starterkit"
+    },
+    "license": "ISC",
+    "keywords": [
+        "elm",
+        "web",
+        "sass"
+    ],
+    "scripts": {
+        "---- COPY index.html": "----------------------------------------------",
+        "index:copy": "ncp src/index.html public/index.html",
+        "---- INIT public folder": "----------------------------------------------",
+        "public:clean": "rimraf public && mkdirp public",
+        "public:init": "npm-run-all public:clean index:copy",
+        "---- BUILD HTML": "----------------------------------------------",
+        "html:build": "elm-make src/Main.elm --output public/elm-index.html",
+        "---- BUILD, WATCH ELM": "----------------------------------------------",
+        "elm:build": "npm run public:init && elm-make src/Main.elm --output public/main.js",
+        "elm:watch": "npm run public:init && elm-live --port=8000 src/Main.elm --output=public/main.js --dir=public --open",
+        "---- BUILD, WATCH CSS": "----------------------------------------------",
+        "build:css": "node-sass style/main.scss --source-map true -o public/",
+        "prefix:css": "postcss --use autoprefixer -d public public/main.css",
+        "minify:css": "cssmin < public/main.css >public/main.min.css",
+        "postbuild:css": "npm-run-all prefix:css minify:css",
+        "watch:css": "chokidar 'style/*.scss' -c 'npm run build:css' --initial",
+        "---- BUILD ALL": "----------------------------------------------",
+        "build": "npm-run-all build:css",
+        "---- WATCH ALL": "----------------------------------------------",
+        "start": "npm-run-all --parallel elm:watch watch:css",
+        "---- TEST": "----------------------------------------------",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "---- MISC": "----------------------------------------------",
+        "unlock": "sudo chown michelemendel:staff package.json",
+        "env": "env"
+    },
+    "devDependencies": {
+        "autoprefixer": "7.1.5",
+        "bootstrap": "4.0.0-beta",
+        "chokidar-cli": "1.2.0",
+        "cross-env": "5.0.5",
+        "cssmin": "0.4.3",
+        "ncp": "2.0.0",
+        "node-sass": "4.5.3",
+        "npm-run-all": "4.0.2",
+        "postcss": "6.0.13",
+        "postcss-cli": "4.1.1",
+        "rimraf": "2.6.1"
+    },
+    "dependencies": {
+        "mkdirp": "0.5.1"
+    }
 }

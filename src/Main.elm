@@ -1,12 +1,15 @@
 module Main exposing (..)
 
-import Debug exposing (log)
-import Html exposing (Html, div, text, input, p, h4, a, button)
-import Html.Attributes exposing (style, class, placeholder, value, href, attribute, type_)
+import Debug exposing (..)
+import Html exposing (Html, a, button, div, h4, input, p, text)
+import Html.Attributes exposing (attribute, class, href, placeholder, style, type_, value)
 import Html.Events exposing (onInput)
 import Model exposing (Model, initialModel)
 import Platform.Cmd
 import String
+
+
+-- Structure code: see http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html
 
 
 main : Program String Model Msg
@@ -39,25 +42,17 @@ type Msg
     | PasswordAgain String
 
 
-
--- update : Msg -> Model -> Model
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        a =
-            log (toString model.name) 0
-    in
-        case msg of
-            Name name ->
-                ( { model | name = name }, Cmd.none )
+    case msg of
+        Name name ->
+            ( { model | name = name }, Cmd.none )
 
-            Password password ->
-                ( { model | password = password }, Cmd.none )
+        Password password ->
+            ( { model | password = password }, Cmd.none )
 
-            PasswordAgain password ->
-                ( { model | password = password }, Cmd.none )
+        PasswordAgain password ->
+            ( { model | password = password }, Cmd.none )
 
 
 
@@ -69,7 +64,7 @@ view model =
     div [ class "container" ]
         [ div [ class "row" ]
             [ div [ class "col-sm-4" ]
-                [ (text "Name: ")
+                [ text "Name: "
                 ]
             , div [ class "col-sm-8" ]
                 [ input [ placeholder "Name", onInput Name, value model.name ] []
