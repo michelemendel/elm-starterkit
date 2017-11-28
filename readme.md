@@ -34,20 +34,21 @@ __NOTE:__ When installing and building the application, the following folders ar
 https://github.com/avh4/elm-format
 
 1. Download, unzip and move to /usr/local/bin
-1. IntelliJ: Setup File Watchers plugin to run when saving files (Tools), https://github.com/avh4/elm-format/blob/master/img/JetBrains%20setup.png
 1. Manually run: elm-format --yes src 
+
 
 ### Visual Studio Code
 
 #### Plugins for Elm
 * elm - Helps with type annotations
-* elm-format - Requires Node v6 (2017.10.01)
+* In settings: "elm.formatOnSave": true
 
 #### Recommended plugins (not necessarily related to Elm)
 * HTML Snippets
 * JavaScript (ES6) code snippets
 * Node Exec
 * Trailing Semicolon
+
 
 ### IntelliJ
 
@@ -60,7 +61,7 @@ OR
 
 B. Using File Watchers
 1. Elm language plugin
-1. File Watchers plugin
+1. IntelliJ: Setup File Watchers plugin to run when saving files (Tools), https://github.com/avh4/elm-format/blob/master/img/JetBrains%20setup.png
 
 #### Live reload
 1. Live reload with Chrome: Install plugin Live Edit on Intellij and Jetbrains extension on Chrome
@@ -69,6 +70,7 @@ See below for more information.
 ### Maybe fix permissions on the Mac
 
 https://docs.npmjs.com/getting-started/fixing-npm-permissions
+
 
 ## Build and Run
 

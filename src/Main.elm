@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Debug exposing (..)
+import Debug exposing (log)
 import Html exposing (Html, a, button, div, h4, input, p, text)
 import Html.Attributes exposing (attribute, class, href, placeholder, style, type_, value)
 import Html.Events exposing (onInput)
@@ -10,6 +10,15 @@ import String
 
 
 -- Structure code: see http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html
+{--------------------------------------------------------------------------------
+    Hardcoded
+--}
+{--------------------------------------------------------------------------------
+    Types and aliases
+--}
+{--------------------------------------------------------------------------------
+    Main and Init
+--}
 
 
 main : Program String Model Msg
@@ -33,7 +42,9 @@ initialCmd =
 
 
 
--- UPDATE
+{--------------------------------------------------------------------------------
+    Update
+--}
 
 
 type Msg
@@ -56,7 +67,9 @@ update msg model =
 
 
 
--- VIEW
+{--------------------------------------------------------------------------------
+    View
+--}
 
 
 view : Model -> Html Msg
@@ -89,3 +102,9 @@ view model =
 revStyle : ( String, String ) -> Html.Attribute msg
 revStyle ( color, bgColor ) =
     style [ ( "color", color ), ( "backgroundColor", bgColor ) ]
+
+
+
+{--------------------------------------------------------------------------------
+    Helper functions
+--}
