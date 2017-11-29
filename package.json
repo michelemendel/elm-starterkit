@@ -11,14 +11,16 @@
     "license": "ISC",
     "keywords": [
         "elm",
+        "elm-bootstrap",
         "web",
         "sass"
     ],
     "scripts": {
         "---- INIT public folder": "----------------------------------------------",
-        "init:public": "npm-run-all clean:public copy:index",
+        "init:public": "npm-run-all clean:public copy:index copy:bootstrap",
         "clean:public": "rimraf public && mkdirp public",
         "copy:index": "ncp src/index.html public/index.html",
+        "copy:bootstrap": "ncp vendor/bootstrap-min public/bootstrap-min/",
         "---- BUILD HTML": "----------------------------------------------",
         "build:html": "elm-make src/Main.elm --output public/elm-index.html",
         "---- BUILD, WATCH ELM": "----------------------------------------------",

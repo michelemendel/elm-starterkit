@@ -1,4 +1,4 @@
-# Installation
+# Installation, Functionality, etc...
 
 ## Elm
 
@@ -114,4 +114,24 @@ https://docs.npmjs.com/getting-started/fixing-npm-permissions
 * autoprefixer: https://github.com/postcss/autoprefixer
 * Minify: cssmin
 * Watch both Elm and sass with Chokidar
+
+
+## Functionalities
+
+### CSS
+
+There are different ways to handle this and they are not mutually exclusive.
+
+1. The classical way: SASS, CSS, etc and transpilation
+1. Special libraries: elm-bootstrap, Material Design (elm-mdl), etc...
+1. CSS in Elm: elm-css: Compile CSS written in Elm
+
+
+### Local Routing/Navigation
+
+
+
+
+
+
 
