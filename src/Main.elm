@@ -1,12 +1,17 @@
 module Main exposing (..)
 
-import Debug exposing (log)
-import Html exposing (Html, a, button, div, h4, input, p, text)
-import Html.Attributes exposing (attribute, class, href, placeholder, style, type_, value)
+-- import Html exposing (Html, a, button, div, h4, input, p, text, img, nav)
+
+import Html.Attributes exposing (attribute, class, placeholder, style, type_, value, src)
 import Html.Events exposing (onInput)
 import Model exposing (Model, initialModel)
 import Platform.Cmd
 import String
+import Css exposing (..)
+import Html
+import Html.Styled exposing (toUnstyled, Html, div, text, a, button, p, input)
+import Html.Styled.Attributes exposing (css, href, src, styled)
+import Html.Styled.Events exposing (onClick)
 
 
 -- Structure code: see http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html
@@ -25,7 +30,7 @@ main : Program String Model Msg
 main =
     Html.programWithFlags
         { init = init
-        , view = view
+        , view = view >> toUnstyled
         , update = update
         , subscriptions = \_ -> Sub.none
         }
@@ -72,10 +77,14 @@ update msg model =
 --}
 
 
-view : Model -> Html Msg
+view : Model -> Html.Html Msg
 view model =
     div [ class "container" ]
-        [ div [ class "row" ]
+        [ div
+            []
+            [ text "Hello from A" ]
+        , div
+            [ class "row" ]
             [ div [ class "col-sm-4" ]
                 [ text "Name: "
                 ]
@@ -90,7 +99,7 @@ view model =
             ]
         , div []
             [ p []
-                [ a [ attribute "aria-controls" "collapseExample", attribute "aria-expanded" "false", class "btn btn-primary", attribute "data-toggle" "collapse", href "#collapseExample" ]
+                [ a [ class "btn btn-primary", attribute "data-toggle" "collapse", href "#collapseExample" ]
                     [ text "Link with href  " ]
                 , button [ attribute "aria-controls" "collapseExample", attribute "aria-expanded" "false", class "btn btn-primary", attribute "data-target" "#collapseExample", attribute "data-toggle" "collapse", type_ "button" ]
                     [ text "Button with data-target  " ]
