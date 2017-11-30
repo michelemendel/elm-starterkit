@@ -16,6 +16,11 @@
         "sass"
     ],
     "scripts": {
+        "---- WATCH ALL": "----------------------------------------------",
+        "start": "npm-run-all --parallel watch:elm watch:css",
+        "---- BUILD, WATCH ELM": "----------------------------------------------",
+        "watch:elm": "npm run init:public && elm-live --port=8000 src/Main.elm src/EchoWebsocket.elm --output=public/main.js --dir=public --open",
+        "build:elm": "npm run init:public && elm-make src/Main.elm --output public/main.js",
         "---- INIT public folder": "----------------------------------------------",
         "init:public": "npm-run-all clean:public copy:index copy:bootstrap",
         "clean:public": "rimraf public && mkdirp public",
@@ -23,9 +28,6 @@
         "copy:bootstrap": "ncp vendor/bootstrap-min public/bootstrap-min/",
         "---- BUILD HTML": "----------------------------------------------",
         "build:html": "elm-make src/Main.elm --output public/elm-index.html",
-        "---- BUILD, WATCH ELM": "----------------------------------------------",
-        "build:elm": "npm run init:public && elm-make src/Main.elm --output public/main.js",
-        "watch:elm": "npm run init:public && elm-live --port=8000 src/Main.elm --output=public/main.js --dir=public --open",
         "---- BUILD, WATCH CSS": "----------------------------------------------",
         "build:css": "node-sass style/main.scss --source-map true -o public/",
         "prefix:css": "postcss --use autoprefixer -d public public/main.css",
@@ -34,12 +36,9 @@
         "watch:css": "chokidar 'style/*.scss' -c 'npm run build:css' --initial",
         "---- BUILD ALL": "----------------------------------------------",
         "build": "npm-run-all build:elm build:css",
-        "---- WATCH ALL": "----------------------------------------------",
-        "start": "npm-run-all --parallel watch:elm watch:css",
         "---- TEST": "----------------------------------------------",
         "test": "echo \"Error: no test specified\" && exit 1",
         "---- MISC": "----------------------------------------------",
-        "unlock": "sudo chown michelemendel:staff package.json",
         "env": "env"
     },
     "devDependencies": {

@@ -15,11 +15,13 @@
 
 <body>
     <div id="elm-app"></div>
+    <div id="elm-echo-websocket-app"></div>
 
     <script type="text/javascript" src="main.js"></script>
 
     <script type="text/javascript">
         var app = Elm.Main.embed(document.getElementById("elm-app"), "Hello");
+        var app = Elm.EchoWebsocket.embed(document.getElementById("elm-echo-websocket-app"));
         // Elm.Main.fullscreen();
     </script>
 </body>
