@@ -4,15 +4,13 @@ module Model exposing (Model, initialModel)
 
 
 type alias Model =
-    { name : String
-    , password : String
-    , passwordAgain : String
+    { field : String
+    , items : List String
     }
 
 
 initialModel : Model
 initialModel =
-    { name = "John DDD"
-    , password = ""
-    , passwordAgain = ""
+    { field = ""
+    , items = []
     }

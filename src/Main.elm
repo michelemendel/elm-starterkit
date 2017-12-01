@@ -2,21 +2,15 @@ module Main exposing (..)
 
 -- import Debug exposing (log)
 
-import Html exposing (Html, a, button, div, h4, input, p, text)
-import Html.Attributes exposing (attribute, class, href, placeholder, style, type_, value)
-
-
--- import Html.Events exposing (onInput)
-
-import Model exposing (Model, initialModel)
+import Html exposing (Html, Attribute, a, button, div, h4, input, p, text, ul, li)
+import Html.Attributes exposing (attribute, class, href, placeholder, style, type_, value, autofocus)
+import Html.Events exposing (onInput, on, keyCode)
 import Platform.Cmd
-
-
--- import String
-
+import Json.Decode as Json
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Row as Row
 import Bootstrap.Grid.Col as Col
+import Model exposing (Model, initialModel)
 
 
 -- Structure code: see http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html
@@ -58,22 +52,18 @@ initialCmd =
 
 
 type Msg
-    = Name String
-    | Password String
-    | PasswordAgain String
+    = UpdateField String
+    | AddItem
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Name name ->
-            ( { model | name = name }, Cmd.none )
+        UpdateField data ->
+            ( { model | field = data }, Cmd.none )
 
-        Password password ->
-            ( { model | password = password }, Cmd.none )
-
-        PasswordAgain password ->
-            ( { model | password = password }, Cmd.none )
+        AddItem ->
+            ( { model | items = model.field :: model.items, field = "" }, Cmd.none )
 
 
 
@@ -87,41 +77,37 @@ view model =
     Grid.container []
         [ Grid.row [ Row.centerXs ]
             [ Grid.col [ Col.xs12 ]
-                [ text "Some content for my view here..." ]
+                [ text "Add new entry to log" ]
             ]
         , Grid.row [ Row.centerXs ]
             [ Grid.col [ Col.xs4 ]
-                [ text "Col 1" ]
+                [ input
+                    [ value model.field
+                    , placeholder "add something"
+                    , autofocus True
+                    , onInput UpdateField
+                    , onEnter AddItem
+                    ]
+                    []
+                ]
             , Grid.col [ Col.xs8 ]
-                [ text "Col 2" ]
+                [ ul []
+                    (List.map (\item -> li [] [ text item ]) model.items)
+                ]
             ]
         ]
 
 
-
--- div [ class "container" ]
---     [ div [ class "row" ]
---         [ div [ class "col-sm-4" ]
---             [ text "NameX: "
---             ]
---         , div [ class "col-sm-8" ]
---             [ input [ placeholder "Name", onInput Name, value model.name ] []
---             ]
---         ]
---     , div [ class "row" ]
---         [ div [ class "cols-sm-12" ]
---             [ text (String.reverse model.name)
---             ]
---         ]
---     , div []
---         [ p []
---             [ a [ attribute "aria-controls" "collapseExample", attribute "aria-expanded" "false", class "btn btn-primary", attribute "data-toggle" "collapse", href "#collapseExample" ]
---                 [ text "Link with href  " ]
---             , button [ attribute "aria-controls" "collapseExample", attribute "aria-expanded" "false", class "btn btn-primary", attribute "data-target" "#collapseExample", attribute "data-toggle" "collapse", type_ "button" ]
---                 [ text "Button with data-target  " ]
---             ]
---         ]
---     ]
+onEnter : Msg -> Attribute Msg
+onEnter msg =
+    let
+        isEnter code =
+            if code == 13 then
+                Json.succeed msg
+            else
+                Json.fail "not ENTER"
+    in
+        on "keydown" (Json.andThen isEnter keyCode)
 
 
 revStyle : ( String, String ) -> Html.Attribute msg
