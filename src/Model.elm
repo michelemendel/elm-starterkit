@@ -1,16 +1,24 @@
-module Model exposing (Model, initialModel)
+module Model exposing (Model, Entry, initialModel)
 
 -- MODEL
 
 
 type alias Model =
     { field : String
-    , items : List String
+    , entries : List Entry
+    , currentId : Int
+    }
+
+
+type alias Entry =
+    { id : Int
+    , text : String
     }
 
 
 initialModel : Model
 initialModel =
     { field = ""
-    , items = []
+    , entries = []
+    , currentId = 0
     }

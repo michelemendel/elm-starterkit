@@ -3,14 +3,25 @@ module Main exposing (..)
 -- import Debug exposing (log)
 
 import Html exposing (Html, Attribute, a, button, div, h4, input, p, text, ul, li)
-import Html.Attributes exposing (attribute, class, href, placeholder, style, type_, value, autofocus)
-import Html.Events exposing (onInput, on, keyCode)
+import Html.Attributes exposing (attribute, id, class, href, placeholder, style, type_, value, autofocus)
+import Html.Events exposing (onClick, onInput, on, keyCode)
 import Platform.Cmd
 import Json.Decode as Json
+
+
+-- Elm Bootstrap
+
 import Bootstrap.Grid as Grid
 import Bootstrap.Grid.Row as Row
 import Bootstrap.Grid.Col as Col
-import Model exposing (Model, initialModel)
+import Bootstrap.Form as Form
+import Bootstrap.Form.Input as Input
+import Bootstrap.ListGroup as ListGroup
+
+
+-- Application
+
+import Model exposing (Model, Entry, initialModel)
 
 
 -- Structure code: see http://blog.jenkster.com/2016/04/how-i-structure-elm-apps.html
@@ -53,17 +64,35 @@ initialCmd =
 
 type Msg
     = UpdateField String
-    | AddItem
+    | AddEntry
+    | RemoveEntry Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        UpdateField data ->
-            ( { model | field = data }, Cmd.none )
+    let
+        newId =
+            model.currentId + 1
+    in
+        case msg of
+            UpdateField data ->
+                ( { model | field = data }, Cmd.none )
 
-        AddItem ->
-            ( { model | items = model.field :: model.items, field = "" }, Cmd.none )
+            AddEntry ->
+                ( { model
+                    | entries =
+                        if String.isEmpty model.field then
+                            model.entries
+                        else
+                            Model.Entry newId model.field :: model.entries
+                    , field = ""
+                    , currentId = newId
+                  }
+                , Cmd.none
+                )
+
+            RemoveEntry id ->
+                ( { model | entries = List.filter (\entry -> entry.id /= id) model.entries }, Cmd.none )
 
 
 
@@ -74,28 +103,55 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
+    div []
+        [ mainContent model
+        ]
+
+
+mainContent : Model -> Html Msg
+mainContent model =
     Grid.container []
         [ Grid.row [ Row.centerXs ]
-            [ Grid.col [ Col.xs12 ]
-                [ text "Add new entry to log" ]
+            [ Grid.col [ Col.xs12 ] [ inputField model ]
             ]
         , Grid.row [ Row.centerXs ]
-            [ Grid.col [ Col.xs4 ]
-                [ input
-                    [ value model.field
-                    , placeholder "add something"
-                    , autofocus True
-                    , onInput UpdateField
-                    , onEnter AddItem
-                    ]
-                    []
-                ]
-            , Grid.col [ Col.xs8 ]
-                [ ul []
-                    (List.map (\item -> li [] [ text item ]) model.items)
+            [ Grid.col [ Col.xs12 ] [ entries model ]
+            ]
+        ]
+
+
+inputField : Model -> Html Msg
+inputField model =
+    Form.group []
+        [ Form.label [] [ text "Add new log entry" ]
+        , Input.text
+            [ Input.attrs
+                [ placeholder "woke up"
+                , value model.field
+                , autofocus True
+                , onInput UpdateField
+                , onEnter AddEntry
                 ]
             ]
         ]
+
+
+entries : Model -> Html Msg
+entries model =
+    ListGroup.ul
+        (List.map
+            (\entry ->
+                ListGroup.li
+                    [ ListGroup.attrs
+                        [ id (toString entry.id)
+                        , onClick (RemoveEntry entry.id)
+                        ]
+                    ]
+                    [ text entry.text
+                    ]
+            )
+            model.entries
+        )
 
 
 onEnter : Msg -> Attribute Msg
