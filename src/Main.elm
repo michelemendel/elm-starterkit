@@ -1,7 +1,6 @@
 module Main exposing (..)
 
--- import Debug exposing (log)
-
+import Debug exposing (log)
 import Html exposing (Html, Attribute, a, button, div, h4, input, p, text, ul, li)
 import Html.Attributes exposing (attribute, id, class, href, placeholder, style, type_, value, autofocus)
 import Html.Events exposing (onClick, onInput, on, keyCode)
@@ -75,8 +74,8 @@ update msg model =
             model.currentId + 1
     in
         case msg of
-            UpdateField data ->
-                ( { model | field = data }, Cmd.none )
+            UpdateField text ->
+                ( { model | field = text }, Cmd.none )
 
             AddEntry ->
                 ( { model
@@ -92,7 +91,11 @@ update msg model =
                 )
 
             RemoveEntry id ->
-                ( { model | entries = List.filter (\entry -> entry.id /= id) model.entries }, Cmd.none )
+                let
+                    _ =
+                        log "---id" id
+                in
+                    ( { model | entries = List.filter (\entry -> entry.id /= id) model.entries }, Cmd.none )
 
 
 
@@ -164,11 +167,6 @@ onEnter msg =
                 Json.fail "not ENTER"
     in
         on "keydown" (Json.andThen isEnter keyCode)
-
-
-revStyle : ( String, String ) -> Html.Attribute msg
-revStyle ( color, bgColor ) =
-    style [ ( "color", color ), ( "backgroundColor", bgColor ) ]
 
 
 
