@@ -33,11 +33,12 @@ import Model exposing (Model, Entry, initialModel)
 {--------------------------------------------------------------------------------
     Main and Init
 --}
+-- Use this without flags or when building index.html as a stand-alone app
 
 
-main : Program String Model Msg
+main : Program Never Model Msg
 main =
-    Html.programWithFlags
+    Html.program
         { init = init
         , view = view
         , update = update
@@ -45,9 +46,24 @@ main =
         }
 
 
-init : String -> ( Model, Cmd Msg )
-init flags =
+init : ( Model, Cmd Msg )
+init =
     ( initialModel, initialCmd )
+
+
+
+-- Use this with flags
+-- main : Program String Model Msg
+-- main =
+--     Html.programWithFlags
+--         { init = init
+--         , view = view
+--         , update = update
+--         , subscriptions = \_ -> Sub.none
+--         }
+-- init : String -> ( Model, Cmd Msg )
+-- init flags =
+--     ( initialModel, initialCmd )
 
 
 initialCmd : Cmd Msg
@@ -83,7 +99,7 @@ update msg model =
                         if String.isEmpty model.field then
                             model.entries
                         else
-                            Model.Entry newId model.field :: model.entries
+                            (Model.Entry newId model.field) :: model.entries
                     , field = ""
                     , currentId = newId
                   }

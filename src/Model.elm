@@ -1,6 +1,8 @@
 module Model exposing (Model, Entry, initialModel)
 
--- MODEL
+{--------------------------------------------------------------------------------
+    Model
+--}
 
 
 type alias Model =
