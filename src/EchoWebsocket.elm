@@ -1,9 +1,17 @@
 module EchoWebsocket exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
+
+
+-- import Html.Attributes exposing (..)
+
 import Html.Events exposing (..)
 import WebSocket
+
+
+wsHost : String
+wsHost =
+    "ws://echo.websocket.org"
 
 
 main : Program Never Model Msg
@@ -42,16 +50,16 @@ type Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg { input, messages } =
+update msg model =
     case msg of
         Input newInput ->
-            ( Model newInput messages, Cmd.none )
+            ( { model | input = newInput }, Cmd.none )
 
         Send ->
-            ( Model "" messages, WebSocket.send "ws://echo.websocket.org" input )
+            ( { model | input = "" }, WebSocket.send wsHost model.input )
 
         NewMessage str ->
-            ( Model input (str :: messages), Cmd.none )
+            ( { model | messages = str :: model.messages }, Cmd.none )
 
 
 
@@ -60,7 +68,7 @@ update msg { input, messages } =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    WebSocket.listen "ws://echo.websocket.org" NewMessage
+    WebSocket.listen wsHost NewMessage
 
 
 

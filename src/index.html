@@ -17,11 +17,11 @@
     <script type="text/javascript" src="main.js"></script>
 
     <div id="elm-app"></div>
-    <!-- <div id="elm-websocket-app"></div> -->
+    <div id="elm-websocket-app"></div>
 
     <script type="text/javascript">
-        var app = Elm.Main.embed(document.getElementById("elm-app"), "Hello");
-        // var app = Elm.HelloWebsocket.embed(document.getElementById("elm-websocket-app"));
+        var app = Elm.Main.embed(document.getElementById("elm-app"));
+        // var app = Elm.EchoWebsocket.embed(document.getElementById("elm-websocket-app"));
     </script>
 </body>
 
